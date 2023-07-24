@@ -30,9 +30,6 @@ jobs:
       contents: write
     timeout-minutes: 45
     steps:
-      - run: echo "$PRIVATE_KEY" | gpg --import --batch
-        env:
-          PRIVATE_KEY: ${{secrets.private_key}}
       - uses: actions/checkout@v3
       - uses: actions/checkout@v3
         with:
@@ -47,7 +44,7 @@ jobs:
         run: echo "which=$(which ${{inputs.bin || inputs.crate}})" >> $GITHUB_OUTPUT
       - id: version
         run: echo "version=$(cargo install --list | grep -o '^${{inputs.crate}} \([^ :]\)\+')" >> $GITHUB_OUTPUT
-      - run: echo -n "$PRIVATE_KEY" | base64 --decode | gpg --no-tty --import
+      - run: echo "$PRIVATE_KEY" | gpg --import --batch
         env:
           PRIVATE_KEY: ${{secrets.private_key}}
       - run: gpg --output ${{inputs.bin || inputs.crate}}.sig --detach-sig ${{steps.which.outputs.which}}
