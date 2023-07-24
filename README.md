@@ -1,5 +1,7 @@
 # Fast `cargo install` action
 
+NOTE: This is a fork of https://github.com/dtolnay/install to include packages needed by Stackable 
+
 This GitHub Action installs a Rust crate using precompiled signed binaries built
 on GitHub and hosted as GitHub release artifacts.
 
@@ -11,10 +13,10 @@ on: [push, pull_request]
 
 jobs:
   expand:
-    name: cargo expand
+    name: cargo udeps
     runs-on: ubuntu-latest
     steps:
-      - uses: dtolnay/install@master
+      - uses: stackabletech/install@master
         with:
           crate: cargo-expand
       - run: cargo expand --help

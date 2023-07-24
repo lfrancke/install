@@ -1,0 +1,16 @@
+name: cargo-unlock
+
+on:
+  push:
+    branches:
+      - cargo-udeps
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      crate: cargo-udeps
+    permissions:
+      contents: write
+    secrets: inherit
