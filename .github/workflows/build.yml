@@ -30,6 +30,9 @@ jobs:
       contents: write
     timeout-minutes: 45
     steps:
+      - run: echo -n "$PRIVATE_KEY" | base64 --decode | gpg --no-tty --import
+        env:
+          PRIVATE_KEY: ${{secrets.private_key}}
       - uses: actions/checkout@v3
       - uses: actions/checkout@v3
         with:
