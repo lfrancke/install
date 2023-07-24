@@ -44,7 +44,7 @@ jobs:
         run: echo "which=$(which ${{inputs.bin || inputs.crate}})" >> $GITHUB_OUTPUT
       - id: version
         run: echo "version=$(cargo install --list | grep -o '^${{inputs.crate}} \([^ :]\)\+')" >> $GITHUB_OUTPUT
-      - run: echo "$PRIVATE_KEY" | gpg --import
+      - run: echo "$PRIVATE_KEY" | gpg --no-tty --import
         env:
           PRIVATE_KEY: ${{secrets.private_key}}
       - run: gpg --output ${{inputs.bin || inputs.crate}}.sig --detach-sig ${{steps.which.outputs.which}}
