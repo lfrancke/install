@@ -33,6 +33,18 @@ jobs:
        
 ### Development
 
+#### Getting started
+
+You need a GPG key without a passphrase!
+
+Here's how you can remove a passphrase from an existing key: https://superuser.com/questions/1360324/gpg-remove-passphrase
+
+`gpg --output private.gpg --armor --export-secret-key github.com/stackabletech/cargo-install-action`
+
+
+
+#### Updating
+
 Unless you're setting up an entirely new branch, work in the main branch.
 When you make changes you can later run the `scripts/rebase.sh` script with the name of a branch to update.
 
