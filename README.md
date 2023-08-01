@@ -30,6 +30,16 @@ jobs:
 | ------- | :------: | -------------------------------------------- |
 | `crate` | ✓        | Name of crate as published to crates.io      |
 | `bin`   |          | Name of binary; default = same as crate name |
+       
+### Development
+
+Unless you're setting up an entirely new branch, work in the main branch.
+When you make changes you can later run the `scripts/rebase.sh` script with the name of a branch to update.
+
+For example:
+```bash
+scripts/rebase.sh cargo-udeps
+```
 
 ## License
 
